@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kgc.dao.QuestionsMapper">
+    <select id="queryAllQues" resultType="map">
+        SELECT * FROM questions ORDER BY lastModified DESC
+    </select>
+
+    <insert id="addQuestion">
+        insert INTO questions (title, detailDesc, answerCount, lastModified)
+        VALUES (#{title},#{detaildesc},#{answercount},#{lastmodified})
+    </insert>
+
+    <select id="queryOneQuestion" resultType="map">
+        SELECT * FROM questions WHERE id=#{id}
+    </select>
+
+    <update id="updateQuestion">
+        UPDATE questions SET  answerCount=#{answercount},lastModified=now() WHERE id=#{id}
+    </update>
+</mapper>
